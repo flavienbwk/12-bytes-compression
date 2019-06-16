@@ -60,7 +60,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
             unsigned int tmp_cmpt_val = ceil(number.value * number.precision / 10);
             if (tmp_cmpt_val < number.min_value || tmp_cmpt_val > pow(2, number.bits) - 1)
             {
-                printf("%d is not between %d and %d, stopping.\n", tmp_cmpt_val, number.min_value, pow(2, number.bits) - 1);
+                printf("%d is not between %d and %d, stopping.\n", tmp_cmpt_val, number.min_value, (unsigned)(pow(2, number.bits) - 1));
                 tbc_struct_desc(number);
                 return tbc_result;
             }
@@ -75,10 +75,6 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     }
     printf("Reached %d bits out of %d maximum, OK.\n", total_nb_bits, max_bytes * 8);
     printf("This payload will use %d bytes.\n\n", (1 + ((total_nb_bits - 1) / 8U)));
-
-    printf("Determining optimized possibility...\n");
-    // Looking for numbers bits summing 8 by 8.
-    printf("Ignored for the moment.\n\n");
 
     printf("Computing integers...\n");
     for (unsigned int c_numbers = 0; c_numbers < size_numbers; c_numbers++)
