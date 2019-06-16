@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
         .precision = 2,             // within 0.5 accuracy
         .max_value = 500,
         .min_value = 0,
-        .value = 1123               // current value (112) + precision decimal (3)
+        .value = 1123               // current value (1.12) + precision decimal (3)
     };
 
     TbcNumber temperature = { 
