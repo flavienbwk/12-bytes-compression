@@ -18,11 +18,11 @@ Compatibilities :
 - :white_circle: atmega1284
 - :white_circle: atmega2560
 
-:heavy_check_mark: = verified
-:white_circle: = should operate
+:heavy_check_mark: = verified  
+:white_circle: = should operate  
 :x: = not compatible
 
-> Please address an issue which title starts with `[compatibility]` to send me your compatibility results. Your name will be listed below to thank you !
+> Please address an issue which title starts with `[Compatibility]` to send me your compatibility results. Your name will be listed below to thank you !
 
 ## Special thanks
 
