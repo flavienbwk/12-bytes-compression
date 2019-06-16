@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
         .precision = 2,             // within 0.5 accuracy
         .max_value = 2000,
         .min_value = 0,
-        .value = 180
+        .value = 1803               // current value (180) + precision decimal (3)
     };
 
     TbcNumber acceleration  = {
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
         .precision = 4,             // within 0.25 accuracy
         .max_value = 90000,        
         .min_value = 0,
-        .value = 96456
+        .value = 856327             // current value (85632) + precision decimal (7)
     };
 
     TbcNumber gps_lat_sign = { 
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
         .precision = 4,             // within 0.25 accuracy
         .max_value = 180000,
         .min_value = 0,
-        .value = 96456
+        .value = 964566             // current value (96456) + precision decimal (6)
     };
 
     TbcNumber ph = { 
@@ -80,21 +80,21 @@ int main(int argc, char const *argv[])
         .precision = 2,             // within 0.5 accuracy
         .max_value = 105000,
         .min_value = 87000,
-        .value = 103000             // current value measured - 87000 (minimum)
+        .value = 1030004            // current value measured (103000) - 87000 + precision decimal (4)
     };
 
     TbcNumber conductance = { 
         .precision = 2,             // within 0.5 accuracy
         .max_value = 500,
         .min_value = 0,
-        .value = 112
+        .value = 1123               // current value (112) + precision decimal (3)
     };
 
     TbcNumber temperature = { 
         .precision = 0,
         .max_value = 99,
         .min_value = 0,
-        .value = 234
+        .value = 23
     };
 
     numbers[0] = downlink_flag;
