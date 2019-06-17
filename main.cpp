@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
         .precision = 0,
         .max_value = 1,
         .min_value = 0,
-        .value = 1
+        .value = 0
     };
 
     TbcNumber inner_water_flag = { 
@@ -29,9 +29,9 @@ int main(int argc, char const *argv[])
 
     TbcNumber turbidity = {
         .precision = 2,             // within 0.5 accuracy
-        .max_value = 2000,
+        .max_value = 999,           // can reduce to 500
         .min_value = 0,
-        .value = 1803               // current value (180) + precision decimal (3)
+        .value = 2653               // current value (265) + precision decimal (3)
     };
 
     TbcNumber acceleration  = {
@@ -77,39 +77,39 @@ int main(int argc, char const *argv[])
     };
 
     TbcNumber pression = { 
-        .precision = 2,             // within 0.5 accuracy
-        .max_value = 105000,
-        .min_value = 87000,
-        .value = 1030004            // current value measured (103000) - 87000 + precision decimal (4)
+        .precision = 2,             // within 0.25 accuracy
+        .max_value = 110000,
+        .min_value = 85000,
+        .value = 1033210            // current value measured (103321) - 87000 (min value) + precision compression on unit (0)
     };
 
     TbcNumber conductance = { 
-        .precision = 2,             // within 0.5 accuracy
-        .max_value = 500,
+        .precision = 2,
+        .max_value = 50,
         .min_value = 0,
-        .value = 1123               // current value (1.12) + precision decimal (3)
+        .value = 112                // current value (11) + precision compression on unit (2)
     };
 
     TbcNumber temperature = { 
         .precision = 0,
-        .max_value = 99,
+        .max_value = 999,
         .min_value = 0,
-        .value = 23
+        .value = 232
     };
 
     numbers[0] = downlink_flag;
-    numbers[1] = inner_water_flag;
-    numbers[2] = outer_water_flag;
-    numbers[3] = turbidity;
-    numbers[4] = acceleration;
+    numbers[1] = turbidity;
+    numbers[2] = gps_lat;
+    numbers[3] = acceleration;
+    numbers[4] = gps_long;
     numbers[5] = gps_long_sign;
-    numbers[6] = gps_long;
-    numbers[7] = gps_lat_sign;
-    numbers[8] = gps_lat;
-    numbers[9] = ph;
-    numbers[10] = pression;
-    numbers[11] = conductance;
-    numbers[12] = temperature;
+    numbers[6] = gps_lat_sign;
+    numbers[7] = ph;
+    numbers[8] = inner_water_flag;
+    numbers[9] = pression;
+    numbers[10] = conductance;
+    numbers[11] = temperature;
+    numbers[12] = outer_water_flag;
 
     twelve_bytes_compression(numbers, 13U);
 

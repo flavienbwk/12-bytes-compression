@@ -5,6 +5,14 @@ Use [twelve_bytes_compression.cpp](./twelve_bytes_compression.cpp) on the embedd
 
 Then, use one of the `api_decompress.*` available to decompress the frame as you want on the server side.
 
+## Run example
+
+Just run the following command :
+
+```
+g++ main.cpp twelve_bytes_compression.cpp && ./a.out
+```
+
 ## Compatibility
 
 This library was created to be compatible with most of the embedded microprocessors.
@@ -26,4 +34,4 @@ Compatibilities :
 
 ## Special thanks
 
-Thank you @ for your work on the theorical algorithm.
+Special thanks to [](https://github.com/) for its work on the theorical algorithm.
