@@ -34,4 +34,4 @@ Compatibilities :
 
 ## Special thanks
 
-Special thanks to [](https://github.com/) for its work on the theorical algorithm.
+Special thanks to [Eliot Courtel ()](https://github.com/) for its work on the theorical algorithm.
