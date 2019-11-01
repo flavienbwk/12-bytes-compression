@@ -77,7 +77,8 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         // Checking maximum validity
         if (number.precision % 2 != 0)
         {
-            printf("You set a precision of %d, precisions must be multiples of 2. Ignoring.\n", number.precision);
+            printf("You set a precision of %d, precisions must be multiples of 2. Stopping.\n", number.precision);
+            exit(1);
             tbc_struct_desc(number);
             number.precision = 0;
         }
@@ -88,13 +89,15 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         }
         else
         {
-            number.bits = (number.precision == 0) ? ceil(Log2(number.max_value - number.min_value)) : ceil(Log2(((number.max_value * number.precision) / 10 - (number.min_value * number.precision) / 10)));
+            number.bits = (number.precision == 0) ? ceil(Log2(tmp_val_diff)) : ceil(Log2(((number.max_value * number.precision) / 10 - (number.min_value * number.precision) / 10)));
         }
         number.bits = (number.bits == 0) ? 1 : number.bits;
+        printf("Value %d occupies %d bits.\n", c_numbers, number.bits);
         total_nb_bits += number.bits;
 
         // Checking current value validity
         unsigned int tmp_cmpt_val;
+        unsigned int tmp_precision = (number.precision > 0) ? number.precision : 1;
         if (number.precision == 0)
         {
             if (number.min_value == 0)
@@ -112,11 +115,11 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
             else
             {
                 tmp_cmpt_val = number.value - number.min_value;
-                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > number.max_value - number.min_value) ? number.max_value - number.min_value : tmp_cmpt_val;
+                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > tmp_val_diff) ? tmp_val_diff : tmp_cmpt_val;
                 tmp_cmpt_val = (ROUND_BOUND_LOW && tmp_cmpt_val < 0) ? 0 : tmp_cmpt_val;
-                if (ENABLE_VALUES_CHECKS && (tmp_cmpt_val > number.max_value - number.min_value) || (tmp_cmpt_val < 0))
+                if (ENABLE_VALUES_CHECKS && (tmp_cmpt_val > tmp_val_diff) || (tmp_cmpt_val < 0))
                 {
-                    printf("%d is not between %d and %d, stopping.\n", tmp_cmpt_val, 0, (number.max_value - number.min_value));
+                    printf("%d is not between %d and %d, stopping.\n", tmp_cmpt_val, 0, (tmp_val_diff * tmp_precision));
                     tbc_struct_desc(number);
                     return tbc_result;
                 }
@@ -126,24 +129,24 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         {
             if (number.min_value == 0)
             {
-                tmp_cmpt_val = ceil(number.value * number.precision / 10);
-                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > ceil(number.max_value * number.precision)) ? ceil(number.max_value * number.precision) : tmp_cmpt_val;
+                tmp_cmpt_val = ceil(number.value * tmp_precision / 10);
+                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > ceil(number.max_value * tmp_precision)) ? ceil(number.max_value * tmp_precision) : tmp_cmpt_val;
                 tmp_cmpt_val = (ROUND_BOUND_LOW && tmp_cmpt_val < number.min_value) ? 0 : tmp_cmpt_val;
                 if (ENABLE_VALUES_CHECKS && (tmp_cmpt_val < number.min_value || tmp_cmpt_val > pow(2, number.bits) - 1))
                 {
-                    printf("%d is not between %d and %f, stopping.\n", tmp_cmpt_val, number.min_value, ceil(number.max_value * number.precision / 10));
+                    printf("%d is not between %d and %f, stopping.\n", tmp_cmpt_val, number.min_value, ceil(number.max_value * tmp_precision / 10));
                     tbc_struct_desc(number);
                     return tbc_result;
                 }
             }
             else
             {
-                tmp_cmpt_val = ceil(number.value * number.precision / 10) - ceil(number.min_value * number.precision);
-                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > (number.max_value - number.min_value) * number.precision) ? (number.max_value - number.min_value) * number.precision : tmp_cmpt_val;
+                tmp_cmpt_val = ceil(number.value * tmp_precision / 10) - ceil(number.min_value * tmp_precision);
+                tmp_cmpt_val = (ROUND_BOUND_HIGH && tmp_cmpt_val > (tmp_val_diff)*tmp_precision) ? (tmp_val_diff)*tmp_precision : tmp_cmpt_val;
                 tmp_cmpt_val = (ROUND_BOUND_LOW && tmp_cmpt_val < number.min_value) ? 0 : tmp_cmpt_val;
-                if (ENABLE_VALUES_CHECKS && (tmp_cmpt_val > (number.max_value - number.min_value) * number.precision) || (tmp_cmpt_val < 0))
+                if (ENABLE_VALUES_CHECKS && (tmp_cmpt_val > (tmp_val_diff * tmp_precision) || (tmp_cmpt_val < 0)))
                 {
-                    printf("%d is not between %d and %d, stopping.\n", (tmp_cmpt_val), 0, (number.max_value - number.min_value) * number.precision);
+                    printf("%d is not between %d and %d, stopping.\n", (tmp_cmpt_val), 0, (tmp_val_diff * tmp_precision));
                     tbc_struct_desc(number);
                     return tbc_result;
                 }
@@ -159,7 +162,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         printf("%d bits out of %d maximum, stopping.\n", total_nb_bits, max_bytes * 8);
         return tbc_result;
     }
-    printf("Reached %d bits out of %d maximum, OK.\n", total_nb_bits, max_bytes * 8);
+    printf("\nReached %d bits out of %d maximum, OK.\n", total_nb_bits, max_bytes * 8);
     printf("This payload will use %d bytes.\n\n", (1 + ((total_nb_bits - 1) / 8U)));
 
     // Computing frame
@@ -191,7 +194,8 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     }
 
     // Filling missing zeros in last case
-    if (total_nb_bits % 8 != 0) {
+    if (total_nb_bits % 8 != 0)
+    {
         for (unsigned int c_numbers = (total_nb_bits % 8); c_numbers < 8; c_numbers++)
             tmp_tbc_result[c_numbers] = '0';
         tbc_result[c_tbc_result] = strbin_to_dec(tmp_tbc_result, 8);
@@ -199,7 +203,8 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
 
     // Displaying results
     printf("OK, you just have to individually send theses data :\n");
-    for (unsigned int i = 0; i < max_bytes; i++) {
+    for (unsigned int i = 0; i < max_bytes; i++)
+    {
         printf("[byte %d] %d\n", i + 1, tbc_result[i]);
     }
     printf("\n[Binary payload] [%d/%d] %s\n", str_bits_counter, max_bytes * 8, str_bits);
