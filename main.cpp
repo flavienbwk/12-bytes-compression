@@ -73,7 +73,7 @@ int main(int argc, char const *argv[])
         .precision = 2,
         .max_value = 400,
         .min_value = 0,
-        .value = 3006               // current value (3006), rounded to 3001 (precision of 0.5)
+        .value = 3006               // current value (3006), rounded to 3000 (precision of 5)
     };
 
     TbcNumber antenna_battery = { 
