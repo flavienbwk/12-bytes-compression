@@ -104,7 +104,8 @@ int main(int argc, char const *argv[])
     numbers[10] = antenna_battery;
     numbers[11] = floater_battery;
 
-    // The fact there are 12 elements is a coincidence. You can put more or less elements.
+    // The fact there are 12 elements is a pure coincidence.
+    // You can put more or less elements.
     twelve_bytes_compression(numbers, 12U);
 
     return 0;
