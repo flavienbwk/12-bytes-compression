@@ -2,9 +2,10 @@
 
 int main(int argc, char const *argv[])
 {
+    // The fact there are 12 elements is a coincidence. You can put more or less elements.
     TbcNumber numbers[12];
 
-    // Some sensor values on a maximum of 96 bits
+    /* Some sensor values on a maximum of 96 bits */
 
     TbcNumber in_water_flag = { 
         .precision = 0,
@@ -103,6 +104,7 @@ int main(int argc, char const *argv[])
     numbers[10] = antenna_battery;
     numbers[11] = floater_battery;
 
+    // The fact there are 12 elements is a coincidence. You can put more or less elements.
     twelve_bytes_compression(numbers, 12U);
 
     return 0;
