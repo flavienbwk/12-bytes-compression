@@ -17,8 +17,8 @@
 #include <math.h>
 
 #define ENABLE_VALUES_CHECKS    1  // Set it to 0 if you are SURE of the data to fasten the algorithm
-#define ROUND_BOUND_HIGH        1  // If set to 1, won't throw an error if the value exceeds this bound
-#define ROUND_BOUND_LOW         1  // If set to 1, won't throw an error if the value exceeds this bound
+#define ROUND_BOUND_HIGH        0  // If set to 1, won't throw an error if the value exceeds this bound
+#define ROUND_BOUND_LOW         0  // If set to 1, won't throw an error if the value exceeds this bound
 
 typedef struct      tbc_number {
     unsigned int    precision;
