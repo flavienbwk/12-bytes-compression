@@ -13,6 +13,44 @@ Just run the following command :
 g++ main.cpp twelve_bytes_compression.cpp && ./a.out
 ```
 
+`main.cpp's a.out` example output :
+
+```
+Checking arithmetic validity...
+Value 0 occupies 12 bits.
+Value 1 occupies 11 bits.
+Value 2 occupies 10 bits.
+Value 3 occupies 20 bits.
+Value 4 occupies 19 bits.
+Value 5 occupies 1 bits.
+Value 6 occupies 1 bits.
+Value 7 occupies 7 bits.
+Value 8 occupies 1 bits.
+Value 9 occupies 10 bits.
+Value 10 occupies 2 bits.
+Value 11 occupies 2 bits.
+
+Reached 96 bits out of 96 maximum, OK.
+This payload will use 12 bytes.
+
+Computing frame...
+OK, you just have to individually send theses data :
+[byte 1] 103
+[byte 2] 132
+[byte 3] 36
+[byte 4] 117
+[byte 5] 175
+[byte 6] 25
+[byte 7] 21
+[byte 8] 58
+[byte 9] 2
+[byte 10] 236
+[byte 11] 101
+[byte 12] 0
+
+[Binary payload] [96/96] 011001111000010000100100011101011010111100011001000101010011101000000010111011000110010110010101
+```
+
 ## Compatibility
 
 This library was created to be compatible with most of the embedded microprocessors.
