@@ -34,6 +34,7 @@ Reached 96 bits out of 96 maximum, OK.
 This payload will use 12 bytes.
 
 Computing frame...
+Aggregating bytes...
 OK, you just have to individually send theses data :
 [byte 1] 103
 [byte 2] 132
