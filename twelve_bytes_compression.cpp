@@ -64,7 +64,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     unsigned short max_bytes = 12; // SigFox maximum payload size
     unsigned int tbc_result[max_bytes] = {0U};
 
-    // Do your numbers enter inside 96 bits (12 bytes) ?
+    // Do your values fit in 96 bits (12 bytes) ?
     printf("Checking arithmetic validity...\n");
 
     unsigned int total_nb_bits = 0;
@@ -165,7 +165,6 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     printf("\nReached %d bits out of %d maximum, OK.\n", total_nb_bits, max_bytes * 8);
     printf("This payload will use %d bytes.\n\n", (1 + ((total_nb_bits - 1) / 8U)));
 
-    // Computing frame
     printf("Computing frame...\n");
     char str_bits[max_bytes * 8];
     unsigned int str_bits_counter = 0;
@@ -180,7 +179,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         }
     }
 
-    // Aggregating bytes
+    printf("Aggregating bytes...\n");
     unsigned int c_tbc_result = 0;
     char tmp_tbc_result[8] = {'0'};
     for (unsigned int c_numbers = 0; c_numbers <= str_bits_counter; c_numbers++)
@@ -193,7 +192,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
         tmp_tbc_result[c_numbers % 8] = str_bits[c_numbers];
     }
 
-    // Filling missing zeros in last case
+    // Filling missing zeros if payload isn't full
     if (total_nb_bits % 8 != 0)
     {
         for (unsigned int c_numbers = (total_nb_bits % 8); c_numbers < 8; c_numbers++)
@@ -202,7 +201,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     }
 
     // Displaying results
-    printf("OK, you just have to individually send theses data :\n");
+    printf("OK, you just have to individually send these data :\n");
     for (unsigned int i = 0; i < max_bytes; i++)
     {
         printf("[byte %d] %d\n", i + 1, tbc_result[i]);
