@@ -183,7 +183,7 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     // Aggregating bytes
     unsigned int c_tbc_result = 0;
     char tmp_tbc_result[8] = {'0'};
-    for (unsigned int c_numbers = 0; c_numbers < str_bits_counter; c_numbers++)
+    for (unsigned int c_numbers = 0; c_numbers <= str_bits_counter; c_numbers++)
     {
         if (c_numbers != 0 && c_numbers % 8 == 0)
         {
