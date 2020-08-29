@@ -7,39 +7,25 @@ int main(int argc, char const *argv[])
 
     /* Some sensor values on a maximum of 96 bits */
 
-    TbcNumber in_water_flag = { 
+    TbcNumber pression = { 
         .precision = 0,
-        .max_value = 1,
-        .min_value = 0,
-        .value = 1
+        .max_value = 11000,
+        .min_value = 8700,
+        .value = 10356              // current value measured (10356X) - 8500X (min value), rounded at 1033.2 hP
     };
 
     TbcNumber turbidity = {
         .precision = 2,             // within 0.5 accuracy
-        .max_value = 999,           // can reduce to 500
+        .max_value = 1023,
         .min_value = 0,
         .value = 2653               // current value (265) + precision decimal (3)
     };
 
-    TbcNumber gps_long_sign = { 
+    TbcNumber temperature = { 
         .precision = 0,
-        .max_value = 1,
+        .max_value = 800,
         .min_value = 0,
-        .value = 1
-    };
-
-    TbcNumber gps_long  = {
-        .precision = 4,             // within 0.25 accuracy
-        .max_value = 90000,        
-        .min_value = 0,
-        .value = 856327             // current value (85632) + precision decimal (7)
-    };
-
-    TbcNumber gps_lat_sign = { 
-        .precision = 0,
-        .max_value = 1,
-        .min_value = 0,
-        .value = 1
+        .value = 235                // current value (23.5)
     };
 
     TbcNumber gps_lat = {
@@ -49,6 +35,27 @@ int main(int argc, char const *argv[])
         .value = 964566             // current value (96456) + precision decimal (6)
     };
 
+    TbcNumber gps_long  = {
+        .precision = 4,             // within 0.25 accuracy
+        .max_value = 90000,        
+        .min_value = 0,
+        .value = 856327             // current value (85632) + precision decimal (7)
+    };
+
+    TbcNumber gps_long_sign = { 
+        .precision = 0,
+        .max_value = 1,
+        .min_value = 0,
+        .value = 1
+    };
+
+    TbcNumber gps_lat_sign = { 
+        .precision = 0,
+        .max_value = 1,
+        .min_value = 0,
+        .value = 1
+    };
+
     TbcNumber ph = { 
         .precision = 0,
         .max_value = 127,
@@ -56,18 +63,11 @@ int main(int argc, char const *argv[])
         .value = 88                 // current value (8.8)
     };
 
-    TbcNumber pression = { 
+    TbcNumber in_water_flag = { 
         .precision = 0,
-        .max_value = 11000,
-        .min_value = 8700,
-        .value = 10356              // current value measured (10356X) - 8500X (min value), rounded at 1033.2 hP
-    };
-
-    TbcNumber temperature = { 
-        .precision = 0,
-        .max_value = 800,
+        .max_value = 1,
         .min_value = 0,
-        .value = 235                // current value (23.5)
+        .value = 1
     };
 
     TbcNumber redox = { 
