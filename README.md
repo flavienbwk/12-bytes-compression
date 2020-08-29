@@ -51,6 +51,8 @@ OK, you just have to individually send these data :
 [Binary payload] [94/96] 0110011110001001110001001110101101011110001100100010101001110100000001011101100010010110010101
 ```
 
+Find an example to uncompress the payload in [decompress/decompress.py](./decompress/decompress.py)
+
 ## Compatibility
 
 This library was created to be compatible with most of the embedded microprocessors.

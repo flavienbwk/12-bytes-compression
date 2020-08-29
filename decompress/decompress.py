@@ -1,11 +1,11 @@
-dataTypeBytes = {
+data_types_format = {
     "Pression": {
         "bits": 12,
         "function": lambda x: (x + 8700) / 10,
         "unit": "hP"
     },
     "Turbidity": {
-        "bits": 11,
+        "bits": 10,
         "function": lambda x: x * (5 / 1024),
         "unit": "V"
     },
@@ -56,11 +56,11 @@ dataTypeBytes = {
     },
 }
 
-def decompress(data):
+def decompress(binary_payload, data_types_format):
     result = {}
-    binary = "{0:096b}".format(int(data, 16))
+    binary = "{0:096b}".format(int(binary_payload, 16))
     actualBit = 0
-    for dataType, item in dataTypeBytes.items():
+    for dataType, item in data_types_format.items():
         print(dataType + " has " + str(item["bits"]) + " bit(s) and begin at bit " + str(actualBit))
         binaryValue = binary[actualBit:actualBit + item["bits"]]
         print("Binary value : " + binaryValue)
@@ -72,3 +72,8 @@ def decompress(data):
         actualBit += item["bits"]
         result[dataType] = value
     return result
+
+decompress(
+    "0110011110001001110001001110101101011110001100100010101001110100000001011101100010010110010111",
+    data_types_format
+)

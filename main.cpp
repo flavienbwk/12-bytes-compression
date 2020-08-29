@@ -58,16 +58,16 @@ int main(int argc, char const *argv[])
 
     TbcNumber ph = { 
         .precision = 0,
-        .max_value = 127,
+        .max_value = 127,           // pH is here measured with a max value of 12.7 (normally 14)
         .min_value = 0,
         .value = 88                 // current value (8.8)
     };
 
     TbcNumber redox = { 
-        .precision = 2,
-        .max_value = 400,
+        .precision = 2,             // Precision of 5 by 5 steps
+        .max_value = 400,           // Redox is normally measure from -2000mv to 2000mv, we're normalizing the measure out of 4000 (400 is because we want a 5 by 5 steps precision) 
         .min_value = 0,
-        .value = 3006               // current value (3006), rounded to 3000 (precision of 5)
+        .value = 3006               // current value is 300 + 6 (precision unit)
     };
 
     TbcNumber antenna_battery = { 
@@ -81,7 +81,7 @@ int main(int argc, char const *argv[])
         .precision = 0,
         .max_value = 4,
         .min_value = 0,
-        .value = 1
+        .value = 3
     };
 
     // Storing all 11 values
