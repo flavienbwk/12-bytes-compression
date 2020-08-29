@@ -39,11 +39,6 @@ dataTypeBytes = {
         "function": lambda x: x / 10,
         "unit": ""
     },
-    "In Water": {
-        "bits": 1,
-        "function": lambda x: x,
-        "unit": ""
-    },
     "ORP / RedOx": {
         "bits": 10,
         "function": lambda x: round(x * (10 / 2)) - 2000,
