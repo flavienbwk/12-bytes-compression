@@ -2,8 +2,8 @@
  * @file twelve_bytes_compression.cpp
  * @author Flavien Berwick (flavien@berwick.fr)
  * @brief Algorithm for compressing digital values for SigFox frames of 12 bytes.
- * @version 0.2
- * @date 2020-08-28
+ * @version 0.3
+ * @date 2020-08-29
  * 
  * Under MIT license. See the full license here :
  * https://github.com/flavienbwk/12-bytes-compression

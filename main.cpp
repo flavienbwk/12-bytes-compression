@@ -63,13 +63,6 @@ int main(int argc, char const *argv[])
         .value = 88                 // current value (8.8)
     };
 
-    TbcNumber in_water_flag = { 
-        .precision = 0,
-        .max_value = 1,
-        .min_value = 0,
-        .value = 1
-    };
-
     TbcNumber redox = { 
         .precision = 2,
         .max_value = 400,
@@ -91,6 +84,8 @@ int main(int argc, char const *argv[])
         .value = 1
     };
 
+    // Storing all 11 values
+    // You can put more or less elements.
     numbers[0] = pression;
     numbers[1] = turbidity;
     numbers[2] = temperature;
@@ -99,14 +94,11 @@ int main(int argc, char const *argv[])
     numbers[5] = gps_long_sign;
     numbers[6] = gps_lat_sign;
     numbers[7] = ph;
-    numbers[8] = in_water_flag;
-    numbers[9] = redox;
-    numbers[10] = antenna_battery;
-    numbers[11] = floater_battery;
+    numbers[8] = redox;
+    numbers[9] = antenna_battery;
+    numbers[10] = floater_battery;
 
-    // The fact there are 12 elements is a pure coincidence.
-    // You can put more or less elements.
-    twelve_bytes_compression(numbers, 12U);
+    twelve_bytes_compression(numbers, 11U);
 
     return 0;
 }

@@ -18,38 +18,37 @@ g++ main.cpp twelve_bytes_compression.cpp && ./a.out
 ```
 Checking arithmetic validity...
 Value 0 occupies 12 bits.
-Value 1 occupies 11 bits.
+Value 1 occupies 10 bits.
 Value 2 occupies 10 bits.
 Value 3 occupies 20 bits.
 Value 4 occupies 19 bits.
 Value 5 occupies 1 bits.
 Value 6 occupies 1 bits.
 Value 7 occupies 7 bits.
-Value 8 occupies 1 bits.
-Value 9 occupies 10 bits.
+Value 8 occupies 10 bits.
+Value 9 occupies 2 bits.
 Value 10 occupies 2 bits.
-Value 11 occupies 2 bits.
 
-Reached 96 bits out of 96 maximum, OK.
+Reached 94 bits out of 96 maximum, OK.
 This payload will use 12 bytes.
 
 Computing frame...
 Aggregating bytes...
-OK, you just have to individually send theses data :
-[byte 1] 103
-[byte 2] 132
-[byte 3] 36
-[byte 4] 117
-[byte 5] 175
-[byte 6] 25
-[byte 7] 21
-[byte 8] 58
-[byte 9] 2
-[byte 10] 236
-[byte 11] 101
-[byte 12] 149
+OK, you just have to individually send these data :
+[byte 1] 103    (01100111)
+[byte 2] 137    (10001001)
+[byte 3] 196    (11000100)
+[byte 4] 235    (11101011)
+[byte 5] 94     (01011110)
+[byte 6] 50     (00110010)
+[byte 7] 42     (00101010)
+[byte 8] 116    (01110100)
+[byte 9] 5      (00000101)
+[byte 10] 216   (11011000)
+[byte 11] 150   (10010110)
+[byte 12] 84    (010101)
 
-[Binary payload] [96/96] 011001111000010000100100011101011010111100011001000101010011101000000010111011000110010110010101
+[Binary payload] [94/96] 0110011110001001110001001110101101011110001100100010101001110100000001011101100010010110010101
 ```
 
 ## Compatibility
