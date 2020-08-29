@@ -6,7 +6,7 @@ dataTypeBytes = {
     },
     "Turbidity": {
         "bits": 11,
-        "function": lambda x: (round(x * (10 / 2)) / 10) * 5 / 1023,
+        "function": lambda x: x * (5 / 1024),
         "unit": "V"
     },
     "Temperature": {

@@ -15,10 +15,10 @@ int main(int argc, char const *argv[])
     };
 
     TbcNumber turbidity = {
-        .precision = 2,             // within 0.5 accuracy
+        .precision = 0,
         .max_value = 1023,
         .min_value = 0,
-        .value = 2653               // current value (265) + precision decimal (3)
+        .value = 625
     };
 
     TbcNumber temperature = { 
