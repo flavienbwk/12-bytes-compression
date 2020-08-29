@@ -204,7 +204,8 @@ unsigned int *twelve_bytes_compression(TbcNumber *numbers, unsigned int size_num
     printf("OK, you just have to individually send these data :\n");
     for (unsigned int i = 0; i < max_bytes; i++)
     {
-        printf("[byte %d] %d\n", i + 1, tbc_result[i]);
+        printf("[byte %d] %d", i + 1, tbc_result[i]);
+        printf("\t(%.*s)\n", 8, str_bits + (i * 8));
     }
     printf("\n[Binary payload] [%d/%d] %s\n", str_bits_counter, max_bytes * 8, str_bits);
 
